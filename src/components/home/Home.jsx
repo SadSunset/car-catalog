@@ -20,7 +20,7 @@ export const Home = () => {
     return (
         <div>
             <h1>Car catalog</h1>
-            <CarForm setCars={setCars}/>
+            <CarForm setCars={setCars} />
             <div>
                 {cars.length ?
                     cars.map(car =>
