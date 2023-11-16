@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 // import { cars as carsData } from '../../assets/mocks/cars.data'
 import { CarForm } from './car-form/CarForm'
 import { CarItem } from './car-item/CarItem'
 import { CarService } from '../../services/car.service'
+import { AuthContext } from '../../providers/AuthProvider'
 
 
 
@@ -16,10 +17,16 @@ export const Home = () => {
         }
         fetchData();
     }, [])
-
+    const {user, setUser} = useContext(AuthContext)
     return (
         <div>
             <h1>Car catalog</h1>
+            {user ? (
+                <>
+                <h2>Welcome, {user.name}!</h2>
+                <button onClick={() => setUser(null)}>Logout</button>
+                </> 
+            ): <button onClick={() => setUser({name: 'Alex'})}>Log in</button>}
             <CarForm setCars={setCars} />
             <div>
                 {cars.length ?
