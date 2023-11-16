@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 // import { cars as carsData } from '../../assets/mocks/cars.data'
 import { CarForm } from './car-form/CarForm'
 import { CarItem } from './car-item/CarItem'
-import axios from 'axios'
+import { CarService } from '../../services/car.service'
+
 
 
 export const Home = () => {
@@ -10,8 +11,8 @@ export const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('http://localhost:3000/cars')
-            setCars(response.data)
+            const data = await CarService.getAll()
+            setCars(data)
         }
         fetchData();
     }, [])
